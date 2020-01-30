@@ -10,7 +10,7 @@ import retrofit2.http.Query
 interface UrbanService{
 
     @Headers(
-        "x-rapidapi-host:https://mashape-community-urban-dictionary.p.rapidapi.com",
+        "x-rapidapi-host:mashape-community-urban-dictionary.p.rapidapi.com",
         "x-rapidapi-key:957c300581msh26618c202f98780p14065fjsn9f59b06a0015")
     @GET(DEFINE_PATH)
     fun defineTerm(@Query("term")term:String):Observable<Response>
