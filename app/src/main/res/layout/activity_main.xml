@@ -8,34 +8,36 @@
 
     <EditText
         android:id="@+id/ed_Text"
-        android:layout_width="match_parent"
+        android:layout_width="278dp"
         android:layout_height="45dp"
+        android:drawableStart="@android:drawable/ic_menu_search"
+        android:drawableEnd="@android:drawable/ic_delete"
+        app:layout_constraintBottom_toTopOf="@+id/recycle"
+        app:layout_constraintEnd_toStartOf="@+id/btn_Search"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/btn_Search"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="@+id/recycle"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <Button
         android:id="@+id/btn_Search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@+id/ed_Text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="84dp"
+        android:layout_height="60dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="Search"
+        android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/recycle"
-        tools:layout_editor_absoluteX="323dp"
-        tools:layout_editor_absoluteY="0dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ed_Text" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="60dp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/ed_Text"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/ed_Text" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
