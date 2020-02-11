@@ -6,38 +6,31 @@
     android:layout_height="match_parent"
     tools:context=".view.activities.MainActivity">
 
-    <EditText
-        android:id="@+id/ed_Text"
-        android:layout_width="278dp"
-        android:layout_height="45dp"
-        android:drawableStart="@android:drawable/ic_menu_search"
-        android:drawableEnd="@android:drawable/ic_delete"
-        app:layout_constraintBottom_toTopOf="@+id/recycle"
-        app:layout_constraintEnd_toStartOf="@+id/btn_Search"
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/etSearchQuery"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@id/btnSearch"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-    <Button
-        android:id="@+id/btn_Search"
-        android:layout_width="84dp"
-        android:layout_height="60dp"
-        android:background="@color/colorPrimaryDark"
-        android:text="Search"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/recycle"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Search"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ed_Text" />
+        app:layout_constraintStart_toEndOf="@id/etSearchQuery"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycle"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="60dp"
+        android:id="@+id/rvDefinitions"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/ed_Text" />
-
-
+        app:layout_constraintTop_toBottomOf="@id/etSearchQuery"
+        tools:listitem="@layout/list_item" />
 </androidx.constraintlayout.widget.ConstraintLayout>

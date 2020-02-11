@@ -1,42 +1,39 @@
 package com.smartherd.nikechallenge.adapters
 
-import android.content.Context
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
 import androidx.recyclerview.widget.RecyclerView
 import com.smartherd.nikechallenge.R
 import com.smartherd.nikechallenge.model.Definition
 import com.smartherd.nikechallenge.utils.inflate
-import kotlinx.android.synthetic.main.activity_main.view.*
+import kotlinx.android.synthetic.main.list_item.view.*
 
+class UrbanAdapter : RecyclerView.Adapter<UrbanAdapter.UrbanAdapterViewHolder>() {
 
-class UrbanAdapter(var userList: ArrayList<Definition>) :
-    RecyclerView.Adapter<UrbanAdapter.UrbanAdaperViewHolder>() {
+    private var definitions: MutableList<Definition> = mutableListOf()
 
-    lateinit var context: Context
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): UrbanAdaperViewHolder {
-        context = parent.context
-        return UrbanAdaperViewHolder(parent.inflate(R.layout.list_item))
+    ): UrbanAdapterViewHolder = UrbanAdapterViewHolder(parent.inflate(R.layout.list_item))
+
+    override fun getItemCount(): Int = definitions.size
+
+    override fun onBindViewHolder(holder: UrbanAdapterViewHolder, position: Int) =
+        holder.loadData(definitions[position])
+
+    fun loadDefinitions(newDefinitions: List<Definition>) {
+        definitions.clear()
+        definitions.addAll(newDefinitions)
+        notifyDataSetChanged()
     }
 
-    override fun getItemCount(): Int = userList.size
-
-
-    override fun onBindViewHolder(holder: UrbanAdaperViewHolder, position: Int) =
-        holder.setUpData(position)
-
-    inner class UrbanAdaperViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun setUpData(position: Int) {
-            val user_text: EditText = itemView.ed_Text
-            val search: Button = itemView.btn_Search
-            val recycleview: RecyclerView = itemView.recycle
-        }
-        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    inner class UrbanAdapterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        fun loadData(definition: Definition) =
+            with(itemView) {
+                tvWord.text = definition.word
+                tvExample.text = definition.example
+            }
     }
 
 }

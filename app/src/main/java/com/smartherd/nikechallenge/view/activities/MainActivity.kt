@@ -1,47 +1,46 @@
 package com.smartherd.nikechallenge.view.activities
 
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.smartherd.nikechallenge.R
+import com.smartherd.nikechallenge.adapters.UrbanAdapter
 import com.smartherd.nikechallenge.viewmodel.MainViewModel
-
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var viewModel: MainViewModel
-
+    private lateinit var viewModel: MainViewModel
+    private lateinit var definitionsAdapter: UrbanAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         // Initializing variables
-        val user_text: EditText = findViewById(R.id.ed_Text)
-        val search: Button = findViewById(R.id.btn_Search)
-        val recycleview: RecyclerView = findViewById(R.id.recycle)
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
-
-
-        search.setOnClickListener {
-            viewModel.definTerm(user_text.text.toString())
+        setObservables()
+        definitionsAdapter = UrbanAdapter()
+        with(rvDefinitions) {
+            layoutManager = LinearLayoutManager(context)
+            adapter = definitionsAdapter
         }
-        setOobservables()
 
-
+        btnSearch.setOnClickListener {
+            viewModel.defineTerm(etSearchQuery.text.toString())
+        }
     }
 
-    private fun setOobservables() {
+    private fun setObservables() {
         viewModel.responseList.observe(this, Observer {
-            Toast.makeText(this,
-                "Got a response for  ${it.list.first().word}",
-                Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this,
+                "Got a response for  ${it.first().word}",
+                Toast.LENGTH_SHORT
+            ).show()
+            definitionsAdapter.loadDefinitions(it)
         })
     }
-
-
 }

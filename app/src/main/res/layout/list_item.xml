@@ -1,10 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/list_item"
+    android:layout_width="match_parent"
+    android:layout_height="200dp">
 
-    <ListView
-        android:id="@+id/List_View"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-</LinearLayout>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvWord"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/tvDefinition"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Word View" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvDefinition"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/tvExample"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvWord"
+        tools:text="Definition View" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvExample"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toTopOf="@id/barrierH1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvDefinition"
+        tools:text="Example View" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrierH1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:barrierDirection="top"
+        app:constraint_referenced_ids="tvThumbsDown,tvThumbsDown" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvThumbsUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:drawableStart="@drawable/ic_thumb_up"
+        android:drawablePadding="10dp"
+        app:layout_constraintBottom_toTopOf="@id/tvCurrentVote"
+        app:layout_constraintEnd_toStartOf="@id/tvThumbsDown"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvExample"
+        tools:text="400" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvThumbsDown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_thumb_down"
+        android:drawablePadding="10dp"
+        app:layout_constraintBottom_toTopOf="@id/tvCurrentVote"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvThumbsUp"
+        app:layout_constraintTop_toBottomOf="@id/tvExample"
+        tools:text="100" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrierH2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="tvThumbsDown,tvThumbsDown" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvCurrentVote"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/barrierH2"
+        tools:text="Current Vote" />
+</androidx.constraintlayout.widget.ConstraintLayout>
