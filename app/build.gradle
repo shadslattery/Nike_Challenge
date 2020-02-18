@@ -22,6 +22,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets { main { assets.srcDirs = ['src/main/assets', 'src/main/assets/'] } }
 }
 
 dependencies {
@@ -69,8 +70,3 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:4.3.1")
 
 }
-
-
-
-
-
